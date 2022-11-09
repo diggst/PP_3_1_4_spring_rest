@@ -4,7 +4,6 @@ import com.example.pp_3_1_4_spring_rest.model.User;
 import com.example.pp_3_1_4_spring_rest.security.UserDetailsImp;
 import com.example.pp_3_1_4_spring_rest.services.RoleService;
 import com.example.pp_3_1_4_spring_rest.services.UserService;
-import com.example.pp_3_1_4_spring_rest.utils.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,22 +25,18 @@ import javax.validation.Valid;
 public class AdminController {
 
     private final UserService userService;
-    private final UserValidator userValidator;
     private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService, UserValidator userValidator, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
-        this.userValidator = userValidator;
         this.roleService = roleService;
     }
 
     @GetMapping()
     public String index(Model model) {
         model.addAttribute("user", getCurrentUser());
-        model.addAttribute("users", userService.index());
-        model.addAttribute("listRoles", roleService.listRoles());
-        return "admin/index";
+        return "admin";
     }
 
     @GetMapping("/new")
@@ -54,7 +49,7 @@ public class AdminController {
 
     @PostMapping("/new")
     public String save(@ModelAttribute("user") @Valid User newUser, BindingResult bindingResult) {
-        userValidator.validate(newUser, bindingResult);
+//        userValidator.validate(newUser, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "admin/new";

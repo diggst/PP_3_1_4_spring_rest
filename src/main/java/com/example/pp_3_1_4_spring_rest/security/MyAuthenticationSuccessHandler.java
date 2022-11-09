@@ -51,7 +51,6 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
                 return roleTargetUrlMap.get(authorityName);
             }
         }
-
         throw new IllegalStateException();
     }
 

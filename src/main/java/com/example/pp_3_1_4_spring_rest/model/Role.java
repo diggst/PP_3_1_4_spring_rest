@@ -1,5 +1,6 @@
 package com.example.pp_3_1_4_spring_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
@@ -23,6 +24,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String roleName;
 
+    @JsonIgnore
     @ManyToMany (mappedBy = "roles")
     private List<User> users;
 
@@ -61,9 +63,5 @@ public class Role implements GrantedAuthority {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public String toString() {
-        return roleName.substring(roleName.indexOf('_') + 1);
     }
 }

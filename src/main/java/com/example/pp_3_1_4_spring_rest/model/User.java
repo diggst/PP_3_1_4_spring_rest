@@ -1,5 +1,7 @@
 package com.example.pp_3_1_4_spring_rest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -42,6 +44,7 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
+    @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
     @JoinTable(
@@ -123,6 +126,7 @@ public class User {
         this.roles = roles;
     }
 
+    @JsonIgnore
     public String getRolesString() {
         return roles.toString().replaceAll("^\\[|\\]$", "");
     }
