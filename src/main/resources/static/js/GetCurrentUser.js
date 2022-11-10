@@ -1,13 +1,13 @@
 async function getCurrentUser() {
 
-    const response = await fetch("api/getUser");
+    const response = await fetch("getUser");
 
-    // if (response.ok) {
+    if (response.ok) {
     let json = await response.json()
         .then(data => {fillHeader(data); fillUserInfo(data);});
-    // } else {
-    //     alert("Ошибка HTTP: " + response.status);
-    // }
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
 
     function listRoles(roles) {
         let rolesString = [];

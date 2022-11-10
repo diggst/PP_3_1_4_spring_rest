@@ -9,7 +9,6 @@ formEdit.addEventListener('submit', e => {
 
     formData.forEach((value, key) => {
         if (key === "rolesId"){
-
             const roleId = value.split(" ")[0];
             const roleName = value.split(" ")[1];
             const role = {

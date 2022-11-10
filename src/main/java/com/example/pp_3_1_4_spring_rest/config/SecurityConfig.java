@@ -1,7 +1,7 @@
 package com.example.pp_3_1_4_spring_rest.config;
 
-import com.example.pp_3_1_4_spring_rest.security.MyAuthenticationSuccessHandler;
-import com.example.pp_3_1_4_spring_rest.services.UserDetailsServiceImp;
+import com.example.pp_3_1_4_spring_rest.security.MySimpleUrlAuthenticationSuccessHandler;
+import com.example.pp_3_1_4_spring_rest.security.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,20 +26,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/login", "/error").permitAll()
-                .antMatchers("/user").hasRole("USER")
-                .anyRequest().hasRole("ADMIN")
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/process_login")
-                .successHandler(myAuthenticationSuccessHandler())
-                .failureUrl("/auth/login?error")
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login");
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/login", "/error").permitAll()
+            .antMatchers("/user").hasRole("USER")
+            .anyRequest().hasRole("ADMIN")
+            .and()
+            .formLogin()
+            .loginProcessingUrl("/process_login")
+            .successHandler(myAuthenticationSuccessHandler())
+            .failureUrl("/auth/login?error")
+            .and()
+            .logout()
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login");
     }
 
     //setting authentication
@@ -55,6 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new MyAuthenticationSuccessHandler();
+        return new MySimpleUrlAuthenticationSuccessHandler();
     }
 }

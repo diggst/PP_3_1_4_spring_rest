@@ -3,12 +3,12 @@ async function getUsers() {
 
     const response = await fetch("api");
 
-    // if (response.ok) {
+    if (response.ok) {
         let json = await response.json()
             .then(data => replaceTable(data));
-    // } else {
-    //     alert("Ошибка HTTP: " + response.status);
-    // }
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
 
     function listRoles(roles) {
         let rolesString = [];

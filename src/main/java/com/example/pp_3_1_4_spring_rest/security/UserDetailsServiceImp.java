@@ -1,8 +1,7 @@
-package com.example.pp_3_1_4_spring_rest.services;
+package com.example.pp_3_1_4_spring_rest.security;
 
 import com.example.pp_3_1_4_spring_rest.model.User;
 import com.example.pp_3_1_4_spring_rest.repositories.UserRepository;
-import com.example.pp_3_1_4_spring_rest.security.UserDetailsImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
